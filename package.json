@@ -8,14 +8,19 @@
     "dev": "nodemon src/server.js",
     "start": "node src/server.js"
   },
-  "keywords": ["api", "express", "javascript"],
+  "keywords": [
+    "api",
+    "express",
+    "javascript"
+  ],
   "author": "Vineet Kumar",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^8.0.3",
-    "dotenv": "^16.3.1",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongodb": "^7.0.0",
+    "mongoose": "^8.0.3",
     "zod": "^3.22.4"
   },
   "devDependencies": {

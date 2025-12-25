@@ -10,7 +10,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || '*',
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -43,8 +46,8 @@ const startServer = async () => {
   try {
     await connectDB();
     app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://localhost:${PORT}`);
-      console.log(`📝 API Documentation: http://localhost:${PORT}/`);
+      console.log(`🚀 Server is running on http://vineetkr.com:${PORT}`);
+      console.log(`📝 API Documentation: http://vineetkr.com:${PORT}/`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);
