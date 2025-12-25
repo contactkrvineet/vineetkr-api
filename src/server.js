@@ -41,18 +41,16 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start server
-const startServer = async () => {
-  try {
-    await connectDB();
-    app.listen(PORT, () => {
-      console.log(`🚀 Server is running on http://vineetkr.com:${PORT}`);
-      console.log(`📝 API Documentation: http://vineetkr.com:${PORT}/`);
-    });
-  } catch (error) {
-    console.error('Failed to start server:', error);
-    process.exit(1);
-  }
-};
+// Initialize database connection
+connectDB().catch(err => console.error('Database connection failed:', err));
 
-startServer();
+// Export for Vercel serverless
+export default app;
+
+// Start server for local development
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is running on http://localhost:${PORT}`);
+    console.log(`📝 API Documentation: http://localhost:${PORT}/`);
+  });
+}
