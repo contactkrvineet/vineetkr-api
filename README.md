@@ -422,7 +422,7 @@ docker rm -f mongodb
 5. **Get connection string:** Click "Connect" → "Connect your application"
 6. **Update .env file:**
    ```
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/vineetkr-db
+   MONGODB_URI=mongodb
    ```
 
 **Pros:** Free, cloud-hosted, no local setup  
@@ -905,6 +905,7 @@ heroku open
 ### Overview
 
 To make your API accessible at `https://api.vineetkr.com` or `https://www.vineetkr.com/api`, you need to:
+
 1. Deploy your API to a hosting platform
 2. Configure DNS records to point to your deployment
 3. Set up SSL certificate (HTTPS)
@@ -934,6 +935,7 @@ After deployment, Railway will give you a URL like: `https://vineetkr-api-produc
 #### Step 2: Get Your Domain DNS Settings
 
 You need access to your domain registrar where you purchased `vineetkr.com`:
+
 - **GoDaddy**: [dcc.godaddy.com](https://dcc.godaddy.com/)
 - **Namecheap**: [namecheap.com](https://www.namecheap.com/myaccount/login/)
 - **Google Domains**: [domains.google.com](https://domains.google.com/)
@@ -946,6 +948,7 @@ You need access to your domain registrar where you purchased `vineetkr.com`:
 Make your API accessible at `https://api.vineetkr.com`
 
 **Add CNAME Record:**
+
 ```
 Type: CNAME
 Name: api
@@ -954,6 +957,7 @@ TTL: 3600 (or Auto)
 ```
 
 **Or use A Record (if platform provides IP):**
+
 ```
 Type: A
 Name: api
@@ -966,6 +970,7 @@ TTL: 3600
 Keep API on main domain: `https://vineetkr.com/api`
 
 **Add CNAME Record:**
+
 ```
 Type: CNAME
 Name: www (or @)
@@ -976,6 +981,7 @@ TTL: 3600
 #### Step 4: Configure Custom Domain on Platform
 
 **Railway:**
+
 1. Go to your project settings
 2. Click "Domains" tab
 3. Click "Custom Domain"
@@ -983,12 +989,14 @@ TTL: 3600
 5. Railway will verify DNS and provide SSL certificate
 
 **Render:**
+
 1. Go to your service
 2. Click "Settings" → "Custom Domain"
 3. Add `api.vineetkr.com`
 4. Follow DNS verification steps
 
 **Heroku:**
+
 ```bash
 heroku domains:add api.vineetkr.com
 # Follow the DNS target provided
@@ -1015,14 +1023,16 @@ Once domain is connected, update your CORS settings in [src/server.js](src/serve
 app.use(cors());
 
 // After (production)
-app.use(cors({
-  origin: [
-    'https://vineetkr.com',
-    'https://www.vineetkr.com',
-    'http://localhost:3000' // For local testing
-  ],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "https://vineetkr.com",
+      "https://www.vineetkr.com",
+      "http://localhost:3000", // For local testing
+    ],
+    credentials: true,
+  })
+);
 ```
 
 ### Platform-Specific Domain Setup
@@ -1103,6 +1113,7 @@ curl -X POST https://api.vineetkr.com/api/users \
 ```
 
 **Expected Response:**
+
 ```json
 {
   "message": "Welcome to VineetKR API",
@@ -1125,12 +1136,14 @@ Most platforms automatically provide free SSL certificates:
 - **Vercel**: Auto SSL ✅
 
 **Manual SSL (if needed):**
+
 - Use [Let's Encrypt](https://letsencrypt.org/) (free)
 - Use [Cloudflare](https://www.cloudflare.com/) (free proxy + SSL)
 
 ### Subdomain Strategy Recommendations
 
 **Option 1: API Subdomain (Best Practice)**
+
 ```
 Main site:  https://vineetkr.com          → Portfolio/Blog
 API:        https://api.vineetkr.com      → REST API
@@ -1138,6 +1151,7 @@ Admin:      https://admin.vineetkr.com    → Admin panel (future)
 ```
 
 **Option 2: Path-based**
+
 ```
 Main site:  https://vineetkr.com          → Portfolio/Blog
 API:        https://vineetkr.com/api      → REST API
@@ -1160,6 +1174,7 @@ ALLOWED_ORIGINS=https://vineetkr.com,https://www.vineetkr.com
 ### Complete Example: Railway + Custom Domain
 
 **1. Deploy to Railway:**
+
 ```bash
 git init
 git add .
@@ -1169,14 +1184,17 @@ git push origin main
 ```
 
 **2. Add MongoDB:**
+
 - Click "New" → "Database" → "MongoDB"
 - Railway auto-sets `MONGODB_URI`
 
 **3. Add Custom Domain:**
+
 - Settings → Domains → "Custom Domain"
 - Enter: `api.vineetkr.com`
 
 **4. Configure DNS (GoDaddy example):**
+
 ```
 Type: CNAME
 Name: api
@@ -1184,6 +1202,7 @@ Value: vineetkr-api-production.up.railway.app
 ```
 
 **5. Wait & Verify:**
+
 ```bash
 # Check DNS
 dig api.vineetkr.com
@@ -1193,11 +1212,13 @@ curl https://api.vineetkr.com/
 ```
 
 **6. Done! Your API is live at:**
+
 - `https://api.vineetkr.com/api/users`
 
 ### Troubleshooting Domain Connection
 
 **DNS not resolving:**
+
 ```bash
 # Check DNS propagation
 nslookup api.vineetkr.com
@@ -1208,16 +1229,19 @@ dig api.vineetkr.com
 ```
 
 **SSL Certificate Issues:**
+
 - Wait 10-15 minutes after DNS verification
 - Platform auto-generates SSL
 - Check platform logs for errors
 
 **CORS Errors:**
+
 - Update CORS origin in `server.js`
 - Include both `http` and `https` versions during testing
 - Remove `localhost` in production
 
 **502 Bad Gateway:**
+
 - Check if app is running on platform
 - Verify environment variables are set
 - Check platform logs for errors
