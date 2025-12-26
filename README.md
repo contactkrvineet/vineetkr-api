@@ -26,23 +26,28 @@ A RESTful API built with **Node.js**, **Express**, and **MongoDB Atlas** for man
 ## 🛠️ Technology Stack
 
 ### **Backend Framework**
+
 - **[Node.js](https://nodejs.org/)** (v18+) - JavaScript runtime
 - **[Express.js](https://expressjs.com/)** (v4.18.2) - Web framework for Node.js
 
 ### **Database**
+
 - **[MongoDB Atlas](https://www.mongodb.com/cloud/atlas)** - Cloud NoSQL database
 - **[Mongoose](https://mongoosejs.com/)** (v8.0.3) - MongoDB ODM (Object Data Modeling)
 
 ### **Validation & Security**
+
 - **[Zod](https://zod.dev/)** (v3.22.4) - TypeScript-first schema validation
 - **[CORS](https://www.npmjs.com/package/cors)** (v2.8.5) - Cross-Origin Resource Sharing
 - **[dotenv](https://www.npmjs.com/package/dotenv)** (v16.3.1) - Environment variable management
 
 ### **Development Tools**
+
 - **[Nodemon](https://nodemon.io/)** (v3.0.2) - Auto-restart on file changes
 - **[GitHub Actions](https://github.com/features/actions)** - CI/CD pipeline
 
 ### **Deployment**
+
 - **[Vercel](https://vercel.com/)** - Serverless deployment platform
 
 ---
@@ -65,25 +70,26 @@ Express makes API development simple through:
 
 ```javascript
 // 1. Import Express
-import express from 'express';
+import express from "express";
 const app = express();
 
 // 2. Define Routes (API Endpoints)
-app.get('/api/users', (req, res) => {
-  res.json({ message: 'Get all users' });
+app.get("/api/users", (req, res) => {
+  res.json({ message: "Get all users" });
 });
 
-app.post('/api/users', (req, res) => {
-  res.json({ message: 'Create user' });
+app.post("/api/users", (req, res) => {
+  res.json({ message: "Create user" });
 });
 
 // 3. Start Server
 app.listen(3000, () => {
-  console.log('API running on port 3000');
+  console.log("API running on port 3000");
 });
 ```
 
 **Key Concepts:**
+
 - **Routes** - URL paths that handle specific HTTP methods (GET, POST, PUT, DELETE)
 - **Middleware** - Functions that process requests before reaching route handlers
 - **Request/Response** - Objects containing HTTP request data and methods to send responses
@@ -104,7 +110,7 @@ This API demonstrates:
 ✅ **CORS Support** - Cross-origin requests enabled  
 ✅ **Serverless Deployment** - Auto-scaling on Vercel  
 ✅ **CI/CD Pipeline** - Automated deployment with GitHub Actions  
-✅ **Production Ready** - Optimized for serverless environments  
+✅ **Production Ready** - Optimized for serverless environments
 
 ---
 
@@ -150,11 +156,13 @@ Response ← JSON Response ← Controller ← Model ← Database Query
 **Base URL:** `https://api.vineetkr.com`
 
 ### **Get All Users**
+
 ```http
 GET /api/users
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -173,11 +181,13 @@ GET /api/users
 ```
 
 ### **Get Single User**
+
 ```http
 GET /api/users?id=507f1f77bcf86cd799439011
 ```
 
 ### **Create User**
+
 ```http
 POST /api/users
 Content-Type: application/json
@@ -190,6 +200,7 @@ Content-Type: application/json
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -204,6 +215,7 @@ Content-Type: application/json
 ```
 
 ### **Update User**
+
 ```http
 PUT /api/users/:id
 Content-Type: application/json
@@ -228,17 +240,20 @@ Content-Type: application/json
 ### **Installation**
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/contactkrvineet/vineetkr-api.git
 cd vineetkr-api
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 ```
 
 3. **Set up environment variables**
+
 ```bash
 # Copy example file
 cp .env.example .env
@@ -250,16 +265,19 @@ nano .env
 4. **Configure MongoDB Atlas**
 
    a. Create a cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-   
+
    b. Get your connection string:
+
    - Click **Connect** → **Connect your application**
    - Copy the connection string
-   
+
    c. Update Network Access:
+
    - Go to **Network Access** → **Add IP Address**
    - Allow access from anywhere: `0.0.0.0/0` (for development)
 
 5. **Update .env file**
+
 ```env
 PORT=3000
 MONGODB_URI=mongodb+srv://your_username:your_password@cluster0.xxxxx.mongodb.net/your_database
@@ -270,11 +288,13 @@ ALLOWED_ORIGINS=http://localhost:3000
 ### **Running the Application**
 
 **Development mode (with auto-restart):**
+
 ```bash
 npm run dev
 ```
 
 **Production mode:**
+
 ```bash
 npm start
 ```
@@ -284,6 +304,7 @@ The API will be running at: **http://localhost:3000**
 ### **Testing the API**
 
 **Using cURL:**
+
 ```bash
 # Get all users
 curl http://localhost:3000/api/users
@@ -298,6 +319,7 @@ curl -X POST http://localhost:3000/api/users \
 Open http://localhost:3000 to see the welcome message
 
 **Using Postman:**
+
 1. Import the API endpoints
 2. Set base URL to `http://localhost:3000`
 3. Test GET, POST, PUT operations
@@ -308,16 +330,17 @@ Open http://localhost:3000 to see the welcome message
 
 ### **Required Variables**
 
-| Variable | Description | Example |
-|----------|-------------|---------|
-| `PORT` | Server port number | `3000` |
-| `MONGODB_URI` | MongoDB connection string | `mongodb+srv://user:pass@cluster.mongodb.net/db` |
-| `NODE_ENV` | Environment mode | `development` or `production` |
-| `ALLOWED_ORIGINS` | CORS allowed origins (comma-separated) | `https://vineetkr.com,http://localhost:3000` |
+| Variable          | Description                            | Example                                          |
+| ----------------- | -------------------------------------- | ------------------------------------------------ |
+| `PORT`            | Server port number                     | `3000`                                           |
+| `MONGODB_URI`     | MongoDB connection string              | `mongodb+srv://user:pass@cluster.mongodb.net/db` |
+| `NODE_ENV`        | Environment mode                       | `development` or `production`                    |
+| `ALLOWED_ORIGINS` | CORS allowed origins (comma-separated) | `https://vineetkr.com,http://localhost:3000`     |
 
 ### **Local Development**
 
 Create a `.env` file in the root directory:
+
 ```env
 PORT=3000
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
@@ -328,6 +351,7 @@ ALLOWED_ORIGINS=http://localhost:3000
 ### **Production (Vercel)**
 
 Set environment variables in Vercel dashboard:
+
 1. Go to **Project Settings** → **Environment Variables**
 2. Add each variable with production values
 3. Redeploy the application
@@ -339,16 +363,19 @@ Set environment variables in Vercel dashboard:
 ### **Deploy to Vercel**
 
 1. **Install Vercel CLI**
+
 ```bash
 npm install -g vercel
 ```
 
 2. **Login to Vercel**
+
 ```bash
 vercel login
 ```
 
 3. **Deploy**
+
 ```bash
 vercel --prod
 ```
@@ -364,7 +391,9 @@ vercel --prod
 This project includes a GitHub Actions workflow that automatically deploys to Vercel on every push to `main` or `prac` branch.
 
 **Setup:**
+
 1. Add secrets to GitHub repository:
+
    - `VERCEL_TOKEN` - Get from https://vercel.com/account/tokens
    - `VERCEL_ORG_ID` - Found in `.vercel/project.json`
    - `VERCEL_PROJECT_ID` - Found in `.vercel/project.json`
@@ -382,7 +411,7 @@ This project includes a GitHub Actions workflow that automatically deploys to Ve
 ✅ **CORS Configuration** - Controlled cross-origin access  
 ✅ **Error Handling** - No sensitive data leaked in error responses  
 ✅ **MongoDB Atlas** - Database hosted securely in the cloud  
-✅ **.gitignore** - Sensitive files excluded from version control  
+✅ **.gitignore** - Sensitive files excluded from version control
 
 ### **Security Checklist**
 
@@ -416,6 +445,7 @@ This project is licensed under the MIT License.
 ## 👨‍💻 Author
 
 **Vineet Kumar**
+
 - Website: [vineetkr.com](https://vineetkr.com)
 - GitHub: [@contactkrvineet](https://github.com/contactkrvineet)
 
@@ -424,8 +454,9 @@ This project is licensed under the MIT License.
 ## 📞 Support
 
 For issues or questions:
+
 - Open an [Issue](https://github.com/contactkrvineet/vineetkr-api/issues)
-- Email: vineet@vineetkr.com
+- Email: contactkrvineet,vineet@vineetkr.com
 
 ---
 
