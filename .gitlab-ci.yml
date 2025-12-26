@@ -1,0 +1,31 @@
+image: node:18
+
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - node_modules/
+      - src/
+  only:
+    - main
+    - prac
+
+deploy:
+  stage: deploy
+  script:
+    # Deploy to your server or hosting platform
+    - echo "Deploying application..."
+    - npm start
+  environment:
+    name: production
+    url: https://api.vineetkr.com
+  only:
+    - main
+  # GitLab automatically injects variables from Settings > CI/CD > Variables
