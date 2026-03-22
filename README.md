@@ -25,7 +25,7 @@ A RESTful API built with **Node.js**, **Express**, and **MongoDB Atlas** for man
 
 ## 🛠️ Technology Stack
 
-### **Backend Framework**
+### **Backend Framework Details**
 
 - **[Node.js](https://nodejs.org/)** (v18+) - JavaScript runtime
 - **[Express.js](https://expressjs.com/)** (v4.18.2) - Web framework for Node.js
